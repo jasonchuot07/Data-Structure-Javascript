@@ -1,0 +1,42 @@
+class Node{
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+// Stack is a stack of data, like an array but first thing to be added is the last thing  to be deleted
+// And the last thing added is the first thing to be removed
+
+class Stack {
+    constructor() {
+        this.first = null
+        this.last = null
+        this.size = 0
+    }
+    push(value) {
+        let newNode = new Node(value)
+        if (!this.first) {
+            this.first = newNode
+            this.last = newNode
+        } else {
+            let temp = this.first
+            this.first = newNode
+            this.first.next = temp
+        }
+        return ++this.size
+
+    }
+    pop() {
+        if (!this.first) {
+            return null
+        } 
+        let temp = this.first
+        if (this.first === this.last) {
+            this.last = null
+        }
+        this.first = this.first.next
+        this.size--
+        return temp.value
+    }
+}
